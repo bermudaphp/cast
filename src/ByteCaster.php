@@ -1,6 +1,6 @@
 <?php
 
-namespace dicontainer\cast;
+namespace Bermuda\Cast;
 
 use Bermuda\Stdlib\Byte;
 
