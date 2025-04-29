@@ -39,6 +39,7 @@ final class CasterProvider implements \IteratorAggregate, Arrayable
         'slug' => SlugCaster::class,
         'phone' => PhoneCaster::class,
         'now' => NowCaster::class,
+        'byte' => ByteCaster::class,
     ];
 
     /**
