@@ -2,7 +2,7 @@
 
 namespace Bermuda\Cast;
 
-use stdlib\Phone;
+use Bermuda\Stdlib\Phone;
 
 final class PhoneCaster implements CasterInterface
 {
