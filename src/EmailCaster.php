@@ -2,7 +2,7 @@
 
 namespace Bermuda\Cast;
 
-use stdlib\Email;
+use Bermuda\Stdlib\Email;
 
 class EmailCaster implements CasterInterface
 {
