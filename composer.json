@@ -1,18 +1,41 @@
 {
-  "name": "bermudaphp/cast",
-  "license": "MIT",
-  "autoload": {
-    "psr-4": {
-      "Bermuda\\Cast\\": "src/"
-    }
-  },
-  "require": {
-    "php": "^8.4",
-    "bermudaphp/config": "^1.4",
-    "psr/http-server-middleware": "^1.0.2",
-    "psr/http-factory": "^1.0.1"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^10.5"
-  }
+    "name": "bermudaphp/cast",
+    "description": "Lightweight and powerful type conversion library for PHP applications",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "cast",
+        "type conversion",
+        "php84"
+    ],
+    "require": {
+        "php": ">=8.4",
+        "nesbot/carbon": "^2.0",
+        "bermudaphp/config": "^1.4",
+        "bermudaphp/stringy": "^1.0.2"
+    },
+    "suggest": {
+        "bermudaphp/cast-ip": "Provides casters for IP address handling",
+        "bermudaphp/cast-phone": "Provides casters for phone number handling and validation"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bermuda\\Caster\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bermuda\\Caster\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
 }
