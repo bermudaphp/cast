@@ -1,6 +1,6 @@
 # Bermuda Cast - Type Conversion Library
 
-*Читайте на [русском](README.md)*
+*Читайте на [русском](README.RU.md)*
 
 `bermudaphp/cast` is a lightweight yet powerful library for type conversion in PHP applications. It provides robust and flexible data transformation between different types with extensive customization capabilities.
 
