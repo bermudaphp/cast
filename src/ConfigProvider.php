@@ -2,8 +2,6 @@
 
 namespace Bermuda\Caster;
 
-use Bermuda\DI\cast\CasterProvider;
-
 class ConfigProvider extends \Bermuda\Config\ConfigProvider
 {
     protected function getFactories(): array
