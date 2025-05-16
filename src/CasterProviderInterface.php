@@ -41,5 +41,5 @@ interface CasterProviderInterface
      * @param CasterInterface $caster The caster instance to add to the registry.
      * @return self Returns the provider instance for method chaining.
      */
-    public function addCaster(CasterInterface $caster): self;
+    public function add(CasterInterface $caster): CasterProviderInterface ;
 }
