@@ -1,21 +1,25 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
 /**
  * Interface ValueInterface
  *
- * Represents a generic value holder. Implementations of this interface are responsible
- * for encapsulating and returning a stored value.
+ * Represents objects that can provide or generate values independently.
+ * Classes implementing this interface act as value providers or factories
+ * that can return values without external input parameters.
+ *
+ * This interface is often used in conjunction with CasterInterface to create
+ * casters that generate values rather than transform input values.
+ *
+ * @see NowCaster For an example implementation that provides the current time.
  */
 interface ValueInterface
 {
     /**
-     * Retrieves the stored value.
+     * Returns a value generated or provided by this object.
      *
-     * Implementations should define how the value is stored and returned.
-     *
-     * @return mixed The stored value.
+     * @return mixed The generated or provided value.
      */
     public function getValue(): mixed;
 }

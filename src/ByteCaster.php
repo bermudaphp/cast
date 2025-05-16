@@ -1,6 +1,6 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
 use Bermuda\Stdlib\Byte;
 
@@ -30,7 +30,7 @@ class ByteCaster implements CasterInterface
         try {
             return new Byte($value);
         } catch (\Throwable $e) {
-            throw new CastableException($e->getMessage(), $e->getCode(), $e);
+            throw CastableException::fromPrevious($e, $this, $value);
         }
     }
 

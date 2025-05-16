@@ -1,6 +1,6 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
 use DateTimeInterface;
 use Ramsey\Uuid\Type\Hexadecimal;
@@ -26,7 +26,7 @@ class UuidCaster implements CasterInterface
         if (is_int($value)) return $this->uuidFactory->fromInteger($value);
 
         if (!is_string($value) || !Uuid::isValid($value)) {
-            throw new CastableException('Invalid Uuid format');
+            throw new CastableException('Invalid Uuid format', $this, $value);
         }
 
         return (string) Uuid::fromString($value);

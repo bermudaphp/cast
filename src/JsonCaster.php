@@ -1,9 +1,17 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
 use Bermuda\Stdlib\Arrayable;
 
+/**
+ * Class JsonCaster
+ *
+ * Converts values to a JSON string.
+ * Supports objects implementing the Arrayable interface, converting them to arrays before encoding.
+ * Allows setting JSON encoding flags during object creation or at cast method call time.
+ * Throws CastableException on encoding errors.
+ */
 class JsonCaster implements CasterInterface
 {
     public function __construct(
@@ -21,7 +29,7 @@ class JsonCaster implements CasterInterface
         try {
             return json_encode($value, ($flags ?? $this->flags)|JSON_THROW_ON_ERROR);
         } catch (\Throwable $exception) {
-            throw new CastableException($exception->getMessage(), $exception->getCode(), $exception);
+            throw CastableException::fromPrevious($exception, $this, $value);
         }
     }
 

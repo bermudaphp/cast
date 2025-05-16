@@ -1,7 +1,14 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
+/**
+ * Class Base64Caster
+ *
+ * A caster that encodes string values into Base64 format.
+ * Only accepts string values and returns their encoded version.
+ * Throws CastableException if the input value is not a string.
+ */
 class Base64Caster implements CasterInterface
 {
     /**
@@ -10,7 +17,7 @@ class Base64Caster implements CasterInterface
     public function cast(mixed $value): string
     {
         if (!is_string($value)) {
-            throw new CastableException('Casting value must be a string');
+            throw CastableException::typeMismatch('string', $this, $value);
         }
 
         return base64_encode($value);

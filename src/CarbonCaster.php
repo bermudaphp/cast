@@ -1,10 +1,20 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
+use Bermuda\DI\cast\CastableException;
+use Bermuda\DI\cast\CasterInterface;
 use Carbon\Carbon;
 use Carbon\Exceptions\InvalidFormatException;
 
+/**
+ * Class CarbonCaster
+ *
+ * Converts various date and time formats into a Carbon object.
+ * Supports conversion of strings, integers (timestamp), and DateTimeInterface objects.
+ * If the input is already a Carbon object, it is returned unchanged.
+ * Throws CastableException if conversion is not possible.
+ */
 class CarbonCaster implements CasterInterface
 {
     /**
@@ -23,9 +33,9 @@ class CarbonCaster implements CasterInterface
                 return Carbon::instance($value);
             }
 
-            throw new CastableException('Casting value is not supported');
+            throw CastableException::unsupported($this, $value);
         } catch (InvalidFormatException $exception) {
-            throw new CastableException($exception->getMessage(), $exception->getCode(), $exception);
+            throw CastableException::fromPrevious($exception, $this, $value);
         }
     }
 

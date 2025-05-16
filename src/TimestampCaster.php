@@ -1,9 +1,16 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
 use Carbon\Carbon;
 
+/**
+ * Class TimestampCaster
+ *
+ * Converts date/time values into Unix timestamp (integer).
+ * Uses Carbon for parsing various date formats.
+ * Throws CastableException if the input cannot be parsed as a valid date/time.
+ */
 class TimestampCaster implements CasterInterface
 {
     /**
@@ -14,7 +21,7 @@ class TimestampCaster implements CasterInterface
         try {
             return Carbon::parse($value)->getTimestamp();
         } catch (\Exception $exception) {
-            throw new CastableException('Invalid date format', $exception->getCode(), $exception);
+            throw CastableException::fromPrevious($exception, $this, $value);
         }
     }
 

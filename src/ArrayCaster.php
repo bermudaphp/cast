@@ -1,6 +1,6 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
 use Bermuda\Stdlib\Arrayable;
 
@@ -65,7 +65,7 @@ class ArrayCaster implements CasterInterface
         try {
             return json_decode($value, true, 512, JSON_THROW_ON_ERROR);
         } catch (\Throwable $exception) {
-            throw new CastableException($exception->getMessage(), $exception->getCode(), $exception);
+            throw CastableException::fromPrevious($exception, $this, $value);
         }
     }
 

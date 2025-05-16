@@ -1,16 +1,17 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
 use Bermuda\Stdlib\StrHelper;
 
 /**
  * Class BooleanCaster
  *
- * Responsible for converting various types of values to a boolean value.
- * It explicitly handles numeric, boolean, string, and null values. For strings,
- * it relies on StrHelper::toBool to parse the value. For other types, it falls back
- * to a native boolean cast and wraps any errors in a CastableException.
+ * Converts various value types to boolean.
+ * Handles numeric values (true if > 1), existing booleans, strings (using StrHelper::toBool),
+ * and null values (returns false).
+ * For other types, attempts standard boolean casting.
+ * Throws CastableException if casting fails.
  */
 class BooleanCaster implements CasterInterface
 {
@@ -38,7 +39,7 @@ class BooleanCaster implements CasterInterface
         try {
             return (bool) $value;
         } catch (\Throwable $e) {
-            throw new CastableException($e->getMessage(), $e->getCode(), $e);
+            throw CastableException::fromPrevious($e, $this, $value);
         }
     }
 

@@ -1,10 +1,21 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
+use Bermuda\DI\cast\CastableException;
+use Bermuda\DI\cast\CasterInterface;
 use Bermuda\Stdlib\Arrayable;
 use DateTimeInterface;
 
+/**
+ * Class StringCaster
+ *
+ * Versatile caster that converts various types to string representation.
+ * Handles arrays (converts to JSON), objects (uses __toString, toArray, or object properties),
+ * DateTimeInterface objects (formats using ATOM format), and scalar values.
+ * Returns empty string for null values.
+ * Throws CastableException if conversion is not supported for the given value type.
+ */
 class StringCaster implements CasterInterface
 {
     /**
@@ -24,15 +35,18 @@ class StringCaster implements CasterInterface
         elseif ($value === null) return '';
         elseif (is_scalar($value)) return (string) $value;
 
-        throw new CastableException('Casting value is not supported');
+        throw CastableException::unsupported($this, $value);
     }
 
+    /**
+     * @throws CastableException
+     */
     private function jsonEncode(mixed $value): string
     {
         try {
             return json_encode($value, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
         } catch (\JsonException $exception) {
-            throw new CastableException($exception->getMessage(), $exception->getCode(), $exception);
+            throw CastableException::fromPrevious($exception, $this, $value);
         }
     }
 

@@ -1,9 +1,19 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
+use Bermuda\DI\cast\CastableException;
+use Bermuda\DI\cast\CasterInterface;
 use Bermuda\Stdlib\Phone;
 
+/**
+ * Class PhoneCaster
+ *
+ * Converts string values to Phone objects.
+ * Performs validation to ensure the provided string represents a valid phone number.
+ * Returns the existing Phone instance if one is provided.
+ * Throws CastableException if the input cannot be converted to a valid Phone object.
+ */
 final class PhoneCaster implements CasterInterface
 {
     /**
@@ -20,7 +30,7 @@ final class PhoneCaster implements CasterInterface
             }
         }
 
-        throw new CastableException('Casting value is not supported.');
+        throw CastableException::unsupported($this, $value);
     }
 
     public function getName(): string

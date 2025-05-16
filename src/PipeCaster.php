@@ -1,6 +1,6 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
 /**
  * Class PipeCaster
@@ -57,12 +57,14 @@ final class PipeCaster implements CasterInterface
      *
      * @param mixed $value The value to be cast.
      * @return mixed The value after being processed by all casters.
+     * @throws CastableExceptionInterface
      */
     public function cast(mixed $value): mixed
     {
         foreach ($this->casters as $caster) {
             $value = $caster->cast($value);
         }
+
         return $value;
     }
 

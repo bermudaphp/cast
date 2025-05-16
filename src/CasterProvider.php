@@ -1,7 +1,19 @@
 <?php
 
-namespace Bermuda\Cast;
+namespace Bermuda\Caster;
 
+use Bermuda\DI\cast\Base64Caster;
+use Bermuda\DI\cast\BooleanCaster;
+use Bermuda\DI\cast\ByteCaster;
+use Bermuda\DI\cast\CasterInterface;
+use Bermuda\DI\cast\FloatCaster;
+use Bermuda\DI\cast\IntCaster;
+use Bermuda\DI\cast\JsonCaster;
+use Bermuda\DI\cast\NowCaster;
+use Bermuda\DI\cast\PipeCaster;
+use Bermuda\DI\cast\SlugCaster;
+use Bermuda\DI\cast\TimestampCaster;
+use Bermuda\DI\cast\UuidCaster;
 use Bermuda\Stdlib\Arrayable;
 
 /**
@@ -14,7 +26,7 @@ use Bermuda\Stdlib\Arrayable;
  * Casters may be registered either as a class name (to be instantiated on demand)
  * or as direct instances of CasterInterface.
  */
-final class CasterProvider implements \IteratorAggregate, Arrayable
+final class CasterProvider implements CasterProviderInterface, \IteratorAggregate, Arrayable
 {
     /**
      * An associative array of caster definitions.
@@ -55,7 +67,7 @@ final class CasterProvider implements \IteratorAggregate, Arrayable
      *
      * This method is part of the Arrayable interface implementation.
      *
-     * @return array The array representation of casters, indexed by the caster name.
+     * @return CasterInterface[] The array representation of casters, indexed by the caster name.
      */
     public function toArray(): array
     {
@@ -91,19 +103,19 @@ final class CasterProvider implements \IteratorAggregate, Arrayable
     {
         if (!isset($this->casters[$name]) && str_contains($name, '|')) {
             $casterNames = explode('|', $name);
-            
+
             $pipe = [];
             foreach ($casterNames as $casterName) {
                 if (!isset($this->casters[$casterName])) {
                     throw new \OutOfBoundsException("Caster '$casterName' not found for composite caster $name");
                 }
-                
+
                 $pipe[] = $this->casters[$casterName];
             }
-            
+
             return $this->casters[$name] = new PipeCaster($pipe);
         }
-        
+
         return $this->casters[$name] ?? null;
     }
 
