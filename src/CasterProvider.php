@@ -43,11 +43,12 @@ final class CasterProvider implements CasterProviderInterface, \IteratorAggregat
      * as determined by the caster's getName() method.
      *
      * @param CasterInterface $caster The caster instance to add.
-     * @return void
+     * @return self
      */
-    public function add(CasterInterface $caster): void
+    public function add(CasterInterface $caster): CasterProviderInterface
     {
         $this->casters[$caster->getName()] = $caster;
+        return $this;
     }
 
     /**
