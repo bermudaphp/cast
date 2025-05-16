@@ -2,8 +2,6 @@
 
 namespace Bermuda\Caster;
 
-use Bermuda\DI\cast\CastableExceptionInterface;
-
 /**
  * Interface CasterInterface
  *
