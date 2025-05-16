@@ -2,10 +2,8 @@
 
 namespace Bermuda\Caster;
 
-use Bermuda\DI\cast\CastableException;
-use Bermuda\DI\cast\CasterInterface;
-use Bermuda\Stdlib\Arrayable;
 use DateTimeInterface;
+use Bermuda\Stdlib\Arrayable;
 
 /**
  * Class StringCaster
