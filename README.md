@@ -94,9 +94,9 @@ composer require bermudaphp/cast-phone
 |-------------|-------|-------------|
 | `phone` | `PhoneCaster` | Validates and formats phone numbers. Returns a Phone object with full support for international formatting and validation. |
 
-### PHP 8.1+ Enumerations (Enums)
+### Enumerations 
 
-The library provides an abstract class `EnumCasterAbstract` for creating casters that work with PHP 8.1+ enumerations:
+The library provides an abstract class `EnumCasterAbstract` for creating casters that work with enumerations:
 
 ```php
 <?php
