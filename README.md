@@ -56,7 +56,7 @@ The library includes the following built-in casters:
 | `int` | `IntCaster` | Converts values to integers. Accepts strings and floating-point numbers. |
 | `float` | `FloatCaster` | Converts values to floating-point numbers. Accepts strings and integers. |
 | `string` | `StringCaster` | Converts values to strings. Supports scalar types, arrays (to JSON), objects with `__toString()`, and other types. |
-| `boolean` | `BooleanCaster` | Converts values to booleans. Correctly handles strings like "true", "false", "yes", "no", and numeric values. |
+| `boolean` | `BooleanCaster` | Converts values to booleans. Correctly handles strings like "true", "false", "yes", "y", "n" "no", and numeric values. |
 | `array` | `ArrayCaster` | Converts values to arrays. Transforms JSON strings, objects, iterable structures. |
 | `json` | `JsonCaster` | Converts values to JSON strings. Supports arrays, objects, and other serializable types. |
 | `timestamp` | `TimestampCaster` | Converts date values to Unix timestamp. Accepts date strings, DateTime objects, and numbers. |
