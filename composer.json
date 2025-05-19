@@ -12,7 +12,7 @@
         "php": ">=8.4",
         "nesbot/carbon": "^2.0",
         "bermudaphp/config": "^1.4",
-        "bermudaphp/stringy": "^1.0.2"
+        "cocur/slugify": "^4.6.0"
     },
     "suggest": {
         "bermudaphp/cast-ip": "Provides casters for IP address handling",
@@ -29,7 +29,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^11.5"
     },
     "scripts": {
         "test": "phpunit"
