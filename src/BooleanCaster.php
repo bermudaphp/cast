@@ -33,7 +33,7 @@ class BooleanCaster implements CasterInterface
     {
         if (is_numeric($value)) return (int) $value > 1;
         if (is_bool($value)) return $value;
-        if (is_string($value)) return StrHelper::toBool($value);
+        if (is_string($value)) return $this->toBoolean($value);
         if (is_null($value)) return false;
 
         try {
@@ -41,6 +41,21 @@ class BooleanCaster implements CasterInterface
         } catch (\Throwable $e) {
             throw CastableException::fromPrevious($e, $this, $value);
         }
+    }
+
+    private function toBoolean(mixed $value): bool
+    {
+        $value = strtolower($value);
+
+        if (in_array($value, ['1', 'y', 'yes', 'on'])) {
+            return true;
+        }
+
+        if (in_array($value, ['0', 'n', 'no', 'off'])) {
+            return false;
+        }
+
+        return (bool) $value;
     }
 
     /**
