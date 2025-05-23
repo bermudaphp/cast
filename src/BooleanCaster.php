@@ -2,8 +2,6 @@
 
 namespace Bermuda\Caster;
 
-use Bermuda\Stdlib\StrHelper;
-
 /**
  * Class BooleanCaster
  *
