@@ -13,6 +13,7 @@
         "nesbot/carbon": "^2.0",
         "bermudaphp/config": "^1.4",
         "bermudaphp/arrayable": "^1.1",
+        "bermudaphp/byte": "^2.0",
         "cocur/slugify": "^4.6.0"
     },
     "suggest": {
